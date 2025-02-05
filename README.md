@@ -19,7 +19,7 @@ This app helps you calculate your monthly mortgage payment based on your input d
 
 1. Loan Amount:
     - Enter the loan amount in the first input field.
-    - Use the left section to change the currency symbol. All available values are stored in ./components/lang/lang.json. Click to view all options.
+    - Use the left section to change the currency symbol. All available values are stored in ./config/lang.json. Click to view all options.
 
 2. Loan Term:
     - Enter the loan term in months or years in the next input field.
@@ -46,7 +46,7 @@ This app helps you calculate your monthly mortgage payment based on your input d
     - If any data is invalid, the corresponding field will be highlighted in red.
 
 7. Configuration:
-    - All configuration data (e.g., min/max values) is stored in ./components/config/config.js.
+    - All configuration data (e.g., min/max values) is stored in ./config/config.js.
 
 8. Feedback:
     - If you like the app, please leave a review!
@@ -54,8 +54,8 @@ This app helps you calculate your monthly mortgage payment based on your input d
 ## Process Under the Hood
 1. Page Load:
     - The app attempts to detect the browser's language:
-        - If the language is supported (found in ./components/lang/lang.json), it loads the page with the appropriate language and currency.
-        - If not, it defaults to the language specified in ./components/config/defaultValues.js (default: en).
+        - If the language is supported (found in ./config/lang.json), it loads the page with the appropriate language and currency.
+        - If not, it defaults to the language specified in ./config/defaultValues.js (default: en).
 
 2. Language Selection:
     - After the page loads, language buttons appear at the top of the form.
@@ -73,12 +73,12 @@ This app helps you calculate your monthly mortgage payment based on your input d
     - The **Clear** button resets all input fields to empty values.
 
 6. Text errors messages
-    - All error messages are stored in './components/config/errorsMsgs.json'
+    - All error messages are stored in './config/errorsMsgs.json'
 
 ## Technology
     - Frontend: React, CSS
 
 ## Contacts
-    - GitHub: ваш-username
-    - Email: my.email.third@gmail.com
+    - GitHub: https://github.com/AkoHb
+    - Email: toshick9@gmail.com
 
