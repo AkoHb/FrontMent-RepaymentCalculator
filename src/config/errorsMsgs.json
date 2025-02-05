@@ -1,0 +1,12 @@
+{
+    "langMessage" : "Not enough languages to select",
+    "languageTitle" : "No full name available",
+    "ariaLabel" : "No valid description to that label.",
+    "invalidName" : "No valid name",
+    "invalitCurrencyChar" : "The '{val}' isn't valid to get currency char",
+    "invalidType": "The '{val}' has invalid type",
+    "invalidLength": "The '{val}' has invalid length",
+    "valueLow" : "Value must be at least {val}",
+    "valueGr" : "Value must be no more than {val}",
+    "catchMSG" : "Something went wrong. {error}"
+}

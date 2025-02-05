@@ -1,0 +1,39 @@
+@use "variables" as *;
+@use "mixins";
+@use "global";
+
+@font-face {
+  font-family: "PlusJakartaSans";
+  src: url("../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 900; /* Диапазон от 100 до 900 */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PlusJakartaSans";
+  src: url("../assets/fonts/PlusJakartaSans-Italic-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 900; /* Диапазон от 100 до 900 */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "PlusJakartaSans";
+  src: url("../assets/fonts/static/PlusJakartaSans-Bold.ttf")
+    format("truetype");
+  font-weight: bold; /* Указываем именно "bold", а не диапазон */
+  font-style: normal; /* Для жирного шрифта используется нормальный стиль */
+}
+
+@font-face {
+  font-family: "PlusJakartaSans";
+  src: url("../assets/fonts/static/PlusJakartaSans-Medium.ttf")
+    format("truetype");
+  font-weight: 500; /* Указываем конкретный вес для среднего */
+  font-style: normal; /* Для среднего шрифта стиль тоже нормальный */
+}
+
+body {
+    background-color: $body-bg-color;
+}
