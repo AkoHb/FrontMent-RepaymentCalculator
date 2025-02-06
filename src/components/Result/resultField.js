@@ -48,14 +48,14 @@ const getContent = (lang, currencyChar, month, total) => {
                     id='result-title'
                     className=''
                     key="result-title-key"
-                >{languages[lang]?.result.titleEmpty || ErrorMSG.languageTitle}
+                >{languages[lang]?.result?.titleEmpty || ErrorMSG.languageTitle}
                 </h4>
                 <p
                     id='result-description'
                     key="result-description-key"
                     className=''
                 >
-                    {languages[lang]?.result.descriptionEmpty || ErrorMSG.languageTitle}
+                    {languages[lang]?.result?.descriptionEmpty || ErrorMSG.languageTitle}
                 </p>
             </>
         )
@@ -66,14 +66,14 @@ const getContent = (lang, currencyChar, month, total) => {
                     id='result-title'
                     className=''
                     key="result-title-key"
-                >{languages[lang]?.result.title || ErrorMSG.languageTitle}
+                >{languages[lang]?.result?.title || ErrorMSG.languageTitle}
                 </h4>
                 <p
                     id='result-description'
                     key="result-description-key"
                     className=''
                 >
-                    {languages[lang]?.result.description || ErrorMSG.languageTitle}
+                    {languages[lang]?.result?.description || ErrorMSG.languageTitle}
                 </p>
                 <div
                     id='result-info-block'
@@ -83,10 +83,10 @@ const getContent = (lang, currencyChar, month, total) => {
                     <h6
                         id='result-monthly-repayment'
                         key="result-monthly-repayment-key"
-                        aria-label={languages[lang]?.result.ariaLabel.monthly || ErrorMSG.ariaLabel}
+                        aria-label={languages[lang]?.result?.ariaLabel?.monthly || ErrorMSG.ariaLabel}
                         className=''
                     >
-                        {languages[lang]?.result.monthlyBillTitle || ErrorMSG.languageTitle}
+                        {languages[lang]?.result?.monthlyBillTitle || ErrorMSG.languageTitle}
                     </h6>
                     <p
                         id='result-monthly-repayment-value'
@@ -97,10 +97,10 @@ const getContent = (lang, currencyChar, month, total) => {
                     <h6
                         id='result-monthly-repayment'
                         key="result-monthly-repayment-key"
-                        aria-label={languages[lang]?.result.ariaLabel.total || ErrorMSG.ariaLabel}
+                        aria-label={languages[lang]?.result?.ariaLabel?.total || ErrorMSG.ariaLabel}
                         className=''
                     >
-                        {languages[lang]?.result.fullBillTitle || ErrorMSG.languageTitle}
+                        {languages[lang]?.result?.fullBillTitle || ErrorMSG.languageTitle}
                     </h6>
                     <p
                         id='result-total-repayment-value'

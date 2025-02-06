@@ -1,5 +1,5 @@
 // Get valid language from 'json' file witl all data
-const languages = require('../lang/lang.json');
+const languages = require('../config/lang.json');
 
 /**
  * The function `getWordForm` used to return the correct word form by amount
@@ -11,6 +11,7 @@ const languages = require('../lang/lang.json');
  * @returns { String } - with correct name or name by default lamguage (English = 'en')
 */
 export default function getWordForm (inputValue, wordKey, lang) {
+    
     const num = parseInt(inputValue, 10);
 
     if (isNaN(num) || num === 0) {

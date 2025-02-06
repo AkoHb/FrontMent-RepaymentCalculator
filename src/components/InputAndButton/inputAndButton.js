@@ -20,7 +20,7 @@ import ErrorMSG from '../../config/errorsMsgs.json';
  * 
  * @returns {JSX.Element} - A JSX element representing the HTML structure with the dynamic button.
  */
-export default function CreateInputAndButton({ lang, data, buttonPosition, arrayWithObjects }) {
+export default function CreateInputAndButton({ lang, data, arrayWithObjects, buttonPosition = "0" }) {
     
     const [state, setState] = useState({
         button: {
@@ -38,11 +38,12 @@ export default function CreateInputAndButton({ lang, data, buttonPosition, array
     }
 
     const inputAttr = {
-        type: data.input?.attr?.type || 'text',
-        min: data.input?.attr?.min ?? null,
-        max: data.input?.attr?.max ?? null,
-        step: data.input?.attr?.step ?? null,
-        placeholder: data.input?.attr?.placeholder || 'Enter value...',
+        type: data.input?.type || 'text',
+        min: data.input?.min ?? null,
+        max: data.input?.max ?? null,
+        step: data.input?.step ?? null,
+        placeholder: data.input?.placeholder || 'Enter value...',
+        ...data.input
     };
 
     const validateInput = (value) => {
@@ -89,7 +90,7 @@ export default function CreateInputAndButton({ lang, data, buttonPosition, array
 
     const ButtonD = () => (
         <button
-            {...data.button.attr}
+            {...data.button}
             onClick={changeTextValue}
             value={state.button.value}
             className={state.errorInput ? 'error-btn' : ''}
@@ -100,7 +101,6 @@ export default function CreateInputAndButton({ lang, data, buttonPosition, array
 
     const InputD = () => (
         <input
-            {...data.input.attr}
             {...inputAttr} 
             value={state.inputValue}
             onChange={(e) => validateInput(e.target.value)}
@@ -118,13 +118,15 @@ export default function CreateInputAndButton({ lang, data, buttonPosition, array
     return (
         <>
             <h4 
-                id={data.header?.id || ErrorMSG.invalidName}
+                id={data?.header?.id || ErrorMSG.invalidName}
+                key={data?.header?.key || crypto.randomUUID()}
                 className={data.header?.classes || ""}
             >
                 {languages[lang]?.userInputForm.userInput[data.header.title] || ErrorMSG.invalidName}
             </h4>
             <div 
-                id={data.container?.id || ErrorMSG.invalidName}
+                id={data?.container?.id || ErrorMSG.invalidName}
+                key={data?.container?.key || crypto.randomUUID()}
                 className={`container ${state.errorInput ? 'error-container' : ''}`} 
             >
                 {getBlock()}
