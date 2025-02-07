@@ -1,0 +1,35 @@
+@import '../../styles/variables.scss';
+
+.input-and-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: $user-inp-div-bg-color;
+    border-radius: 0.5rem;
+    min-width: 250px;
+    max-width: 100%;
+
+    .input {
+        width: 100%;
+        padding: 0.75rem;
+        margin-right: 1rem;
+        border: 1px solid $user-input-main-color;
+        border-radius: 0.25rem;
+        font-size: 1rem;
+    }
+
+    .button {
+        padding: 0.75rem 1.5rem;
+        background-color: $user-input-second-color;
+        border: none;
+        border-radius: 0.25rem;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $radio-btn-sel-rad-color;
+        }
+    }
+}

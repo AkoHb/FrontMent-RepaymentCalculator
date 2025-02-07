@@ -34,6 +34,6 @@ export default function getTempData(count, language = defaultValues.preloadLangu
         text: GetWordForm(count, time, language)
     }));
 
-    console.debug(result);
+    // console.debug(result);
     return result;
 }

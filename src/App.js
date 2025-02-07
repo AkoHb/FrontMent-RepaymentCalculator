@@ -1,11 +1,11 @@
 // add configuration settings
-import config from "./config/config";
-import defaultValues from "./config/defaultValues";
-import UserInputField from "./components/UserInput/userInputField";
-import ResultField from "./components/Result/resultField";
-import "./App.scss";
 import React, { useEffect } from "react";
+import defaultValues from "./config/defaultValues";
 import GetRateData from "./utils/getRateData";
+import GetBlockMinValues from "./utils/getBlockMinValues";
+import ResultField from "./components/Result/resultField";
+import UserInputField from "./components/UserInput/userInputField";
+import "./App.scss";
 
 // add the languages library
 const langLib = require("./config/lang.json");
@@ -21,17 +21,21 @@ const defaultCurrency =
     : "$";
 
 export default function App() {
+
   const [state, setState] = React.useState({
     currentLanguage: defaultValues.preloadLanguage,
     currentCurrency: defaultCurrency,
-    paymentCount: 0,
-    timeUnit: "year", // 'day' or 'month', 'year'
-    interestRateInterval: "month", // 'day' or 'month', 'year'
-    termCount: 0,
-    interestRate: 0,
+    paymentCount: 350000,
+    timeUnit: "year", // 'day','month' or 'year'
+    termCount: 1,
+    interestRateInterval: "month", // 'day', 'month' or 'year'
+    interestRate: 5.25,
     isError: false,
-    rateBtnsData: GetRateData(defaultValues.preloadLanguage),
+    monthlyPayment: 1461554,
+    totalPayment: 11565156
   });
+
+  // console.debug(state);
 
   useEffect(() => {
     const browserLang = langLib.hasOwnProperty(
@@ -57,17 +61,14 @@ export default function App() {
     }));
   }, [state.currentLanguage]);
 
-  const blockWidth =
-    !config.minBlockWidth || config.minBlockWidth < defaultValues.minColumnSize
-      ? config.minBlockWidth
-      : defaultValues.minColumnSize;
-
   return (
     <div
       id="container"
       style={{
         display: "grid",
-        gridTemplateColumns: `repeat(2, minmax(${blockWidth}px, 50vw))`,
+        minWidth: GetBlockMinValues()[0],
+        gridTemplateColumns: `repeat(2, minmax(${GetBlockMinValues()[0]}px, 1fr))`
+        // gridTemplateColumns: `repeat(2, minmax(${GetBlockMinValues()[0]}px, 1fr))`,
       }}
     >
       <UserInputField {...{state, setState}}/>
