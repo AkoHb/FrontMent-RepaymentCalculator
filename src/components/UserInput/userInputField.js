@@ -7,7 +7,8 @@ import config from "../../config/config";
 
 // import calc icon
 import CalcIcon from "../../assets/images/icon-calculator.svg";
-
+import Ways from "../../config/ways.json";
+import GetValidTextValue from "../../utils/getValidTextValue";
 // import func to fill the buttons data
 import GetLangBtnBlock from "../../utils/getLangBtnBlock";
 import GetCurrencyChars from "../../utils/getCurrencyChars";
@@ -24,39 +25,21 @@ import CreateRadioInput from "../RadioInput/createRadioInput";
 // import the func to fill the data for inputAndButton block
 import GenerateFieldConfig from "../../utils/generateFieldConfig";
 
-// also add file with error messages
-let ErrorMSG = require("../../config/errorsMsgs.json");
-
-// Get valid language from 'json' file and fill the valid fields into form
-const languages = require("../../config/lang.json");
-
-// list of input + button blocks
-const blocksName = [
-    ["currency", "left"],
-    ["term", "right"],
-    ["rate", "right"],
-];
-
 // hold there the data for radio inputs
 const radioDataButtons = [
     {
-        input: { id: "repaiment", classes: "" },
-        label: { key: "repaiment", classes: "" }
+        key: "repayment",
+        input: { id: "repayment", classes: "" },
+        label: { key: "repayment", classes: "" }
     },
     {
+        key: "interest",
         input: { id: "interest", classes: "" },
         label: { key: "interestOnly", classes: "" }
     },
 ];
 
-
-
-
-
-
 export default function UserInputField({ state, setState }) {
-    // console.log([getLanguages(), defaultValues.langButtonsCount]);
-    // console.debug(GetCurrencyChars());
 
     const termArray = React.useMemo(
         () => GetTempData(state.termCount, state.currentLanguage),
@@ -67,23 +50,6 @@ export default function UserInputField({ state, setState }) {
         [state.currentLanguage]
     );
     
-    // handle functions
-    const handleChangeLanguage = (e) => {
-        console.log(e.target.value);
-        setState(prev => ({...prev, currentLanguage: e.target.value}))
-    };
-    
-    const handleChangeAmount = () => {};
-    const handleClickAmount = () => {};
-    
-    const handleChangeTerm = () => {};
-    const handleClickTerm = () => {};
-    
-    const handleChangeRate = () => {};
-    const handleClickRate = () => {};
-    
-    // end handle functions
-
     const data = {
         currency: {
             attr: GenerateFieldConfig(
@@ -91,10 +57,13 @@ export default function UserInputField({ state, setState }) {
                 config.minAmount,
                 config.maxAmount,
                 config.placeholderAmount,
-                handleChangeAmount,
-                handleClickAmount
             ),
+            headerTextKey: "moneyAmount",
+            containerAriaKey: "currencySelection",
             array: GetCurrencyChars(),
+            inpStateKey: "paymentCount",
+            btnStateKey: "currentCurrency",
+            isButtonCheckedByText: true,
         },
         term: {
             attr: GenerateFieldConfig(
@@ -102,10 +71,15 @@ export default function UserInputField({ state, setState }) {
                 config.minTerm,
                 config.maxTerm,
                 config.placeholderTerm,
-                handleChangeTerm,
-                handleClickTerm
             ),
+            headerTextKey: "term",
+            containerAriaKey: "term",
             array: termArray,
+            inpStateKey: "termCount",
+            btnStateKey: "timeUnit",
+            btnPosition: "right",
+            isDynamicButtonText: true,
+            isButtonCheckedByText: true,
         },
         rate: {
             attr: GenerateFieldConfig(
@@ -113,11 +87,14 @@ export default function UserInputField({ state, setState }) {
                 config.minRate,
                 config.maxRate,
                 config.placeholderRate,
-                handleChangeRate,
-                handleClickRate,
                 0.01
             ),
+            headerTextKey: "interestRate",
+            containerAriaKey: "rate",
             array: rateArray,
+            inpStateKey: "interestRate",
+            btnStateKey: "interestRateInterval",
+            btnPosition: "right",
         },
     };
 
@@ -129,46 +106,33 @@ export default function UserInputField({ state, setState }) {
             style={{
                 minWidth: GetBlockMinValues()[0],
             }}
-            aria-label={
-                languages[state.currentLanguage]?.userInputForm.ariaLabels
-                    .userInputBlock || ErrorMSG.ariaLabel
-            }
+            aria-label={GetValidTextValue([...(Ways?.['uIfAl'] || []), 'userInputBlock'], state.currentLanguage)}
         >
-            <GetLangBtnBlock onClick={handleChangeLanguage} />
+            <GetLangBtnBlock state={state} setState={setState} />
             <form
                 className="user-data-input"
                 key="form-key"
-                aria-label={
-                    languages[state.currentLanguage]?.userInputForm.ariaLabels
-                        .form || ErrorMSG.ariaLabel
-                }
+                aria-label={GetValidTextValue([...(Ways?.['uIfAl'] || []), 'form'], state.currentLanguage)}
             >
                 <h2 id="title" className="mUItext" key="form-title-key">
-                    {languages[state.currentLanguage]?.userInputForm.title ||
-                        ErrorMSG.languageTitle}
+                    {GetValidTextValue(Ways.uIfT, state.currentLanguage)}
                 </h2>
                 <button
                     id="clear-form"
                     key="clear-form-key"
                     className="sUItext"
-                    aria-label={
-                        languages[state.currentLanguage]?.userInputForm
-                            .ariaLabels.clearButton || ErrorMSG.ariaLabel
-                    }
+                    aria-label={GetValidTextValue([...(Ways?.['uIfAl'] || []), 'clearButton'], state.currentLanguage)}
                 >
-                    {languages[state.currentLanguage]?.userInputForm
-                        .clearButton || ErrorMSG.invalidName}
+                    {GetValidTextValue(Ways.uIfCb, state.currentLanguage)}
                 </button>
                 <div key="user-input-data-block-key">
                     <div id="decimal-input-block" key="decimal-input-block-key">
-                        {blocksName.map(([key, buttonPosition]) => (
+                        {Object.keys(data).map( key => (
                             <CreateInputAndButton
                                 key={key}
-                                parentState={state}
-                                setParentState={setState}
-                                data={data[key].attr}
-                                arrayWithObjects={data[key].array}
-                                buttonPosition={buttonPosition}
+                                state={state}
+                                setState={setState}
+                                data={data[key]}
                             />
                         ))}
                     </div>
@@ -178,12 +142,10 @@ export default function UserInputField({ state, setState }) {
                             key="header-radio-title-key"
                             className="sUItext"
                         >
-                            {languages[state.currentLanguage]?.userInputForm
-                                .userInput.mortgageType.type ||
-                                ErrorMSG.invalidName}
+                            {GetValidTextValue([...(Ways?.['uIfUiMt'] || []), 'type'], state.currentLanguage)}
                         </h4>
                         {
-                            radioDataButtons.map(data => CreateRadioInput(data, state.currentLanguage))
+                            radioDataButtons.map(data => CreateRadioInput(state, setState, data))
                         }
                     </div>
                     <button
@@ -191,16 +153,12 @@ export default function UserInputField({ state, setState }) {
                         key="submit-btn-key"
                         type="submit"
                         className="light-bg mUItext"
-                        aria-label={
-                            languages[state.currentLanguage]?.userInputForm
-                                .ariaLabels.submit || ErrorMSG.ariaLabel
-                        }
+                        aria-label={GetValidTextValue([...(Ways?.['uIfAl'] || []), 'submit'], state.currentLanguage)}
                         value={defaultValues.submitText}
                     >
                         <img src={CalcIcon} alt="Calculator icon" />
                         {/* <span> */}
-                            {languages[state.currentLanguage]?.userInputForm
-                                .calculateButtonText || ErrorMSG.invalidName}
+                            {GetValidTextValue(Ways.uIfCbT, state.currentLanguage)}
                         {/* </span> */}
                     </button>
                 </div>

@@ -1,5 +1,5 @@
 {
-    "langMessage" : "Not enough languages to select",
+    "langMessage" : "Not enough languages to select.\nThe page loaded with the default language ('en').",
     "languageTitle" : "No full name available",
     "ariaLabel" : "No valid description to that label.",
     "invalidName" : "No valid name",

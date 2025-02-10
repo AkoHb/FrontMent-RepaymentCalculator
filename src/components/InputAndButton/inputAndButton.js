@@ -1,61 +1,140 @@
-import React, { useState } from "react";
-import languages from "../../config/lang.json";
+import React, { useEffect, useState } from "react";
 import ErrorMSG from "../../config/errorsMsgs.json";
+import Ways from "../../config/ways.json";
+import GetValidTextValue from "../../utils/getValidTextValue";
+import GetWordForm from "../../utils/getWordForm";
 import "./inputAndButton.scss";
 
 /**
- * This component creates a div block with an input field and a button.
- * The button text and its value will toggle between states on each click.
+ * A component that creates a block with an input field and a button.
+ * The button text and value change on each click.
  *
- * @param {string} lang - The language code used to display text information (defaults to 'en').
- * @param {string|number} buttonPosition - Defines the position of the button. Valid states are ["left", "right"] or [0, 1].
- * @param {Array} arrayWithObjects - Array of objects used to change the button text and value states.
- *  Each object should contain the following keys:
- *  - `text` (string): The text displayed on the button.
- *  - `value` (string | number): The associated value for the button.
- * @param {Object} data - Object containing the structure and attributes for the component:
- *  - `header`: Contains details for the header element (e.g., title, id, classes).
- *  - `container`: Contains details for the div that wraps the button and input elements.
+ * @param {Object} props - Component properties.
+ * @param {string} props.lang - Language code for text display (default: 'en').
+ * @param {string | number} props.buttonPosition - Button position: "left" | "right" or 0 | 1.
+ * @param {Array} props.arrayWithObjects - Array of objects for changing the button state.
+ *  Each object should contain:
+ *  - `text` (string): The button's displayed text.
+ *  - `value` (string | number): The button's associated value.
+ * @param {Object} props.data - Object containing component structure settings:
+ *  - `attr`: Object with props for elements
+ *  - `header`: Header settings (e.g., title, id, classes).
+ *  - `container`: Attributes for the container wrapping the button and input field.
  *  - `input`: Attributes for the input element.
- *  - `button`: Attributes for the button element.
+ *  - `button`: Attributes for the button.
+ *  - `array`: Array of objects for dynamic button state changes.
+ *  - `headerTextKey`: Lastest key to valid text into Language object
+ *  - `containerAriaKey`: Lastest key to valid text into Language object
+ *  - `inpStateKey`: State key for the input field.
+ *  - `btnStateKey`: State key for the button.
+ *  - `btnPosition`: Button position ("left" | "right" | 0 | 1, default: "left").
+ *  - `isDynamicButtonText`: Flag for dynamically changing button text.
+ *  - `isButtonCheckedByText`: Flag for checking button state by text instead of value.
  *
- * @returns {JSX.Element} - A JSX element representing the HTML structure with the dynamic button.
+ * @returns {JSX.Element | null} JSX element with an input field and a button, or `null` if the object array is invalid.
  */
-export default function CreateInputAndButton({
-    parentState,
-    setParentState,
-    data,
-    arrayWithObjects,
-    buttonPosition = "0",
-    isDynamicButtonText = false,
-}) {
-    const [state, setState] = useState({
-        button: {
-            text: "...",
-            value: "...",
-        },
-        errorInput: false,
+export default function CreateInputAndButton({ key, state, setState, data }) {
+    const {
+        attr,
+        array,
+        headerTextKey = "",
+        containerAriaKey = "",
+        inpStateKey,
+        btnStateKey,
+        btnPosition = "left",
+        isDynamicButtonText = false,
+        isButtonCheckedByText = false,
+    } = data || {};
+
+    const [blockData, setBlockData] = useState({
         inputValue: "",
+        buttonText: "...",
+        buttonValue: "...",
+        errorInput: false,
         errorMessage: "",
     });
 
-    if (!arrayWithObjects || arrayWithObjects.length < 1) {
+    useEffect(() => {
+        let crntBtnData = [];
+        if (array && array.length > 1) {
+            if (isButtonCheckedByText) {
+                crntBtnData = array.filter(
+                    (obj) => obj?.text === state[btnStateKey]
+                );
+            } else {
+                crntBtnData = array.filter(
+                    (obj) => obj?.value === state[btnStateKey]
+                );
+            }
+        }
+
+        if (crntBtnData && crntBtnData.length >= 1) {
+            setBlockData((prev) => ({
+                ...prev,
+                buttonText: crntBtnData[0].text,
+                buttonValue: crntBtnData[0].value,
+            }));
+        }
+    }, [state]);
+
+    useEffect(() => {
+        if (isDynamicButtonText) {
+            let currentTextValue = GetWordForm(
+                blockData.inputValue,
+                state[btnStateKey],
+                state.currentLanguage
+            );
+
+            if (currentTextValue && currentTextValue.length >= 1) {
+                setBlockData((prev) => ({
+                    ...prev,
+                    buttonText: currentTextValue,
+                }));
+            }
+        }
+
+        const timer = setTimeout(() => {
+            setState((prev) => ({
+                ...prev,
+                [inpStateKey]: blockData.inputValue,
+            }));
+        }, 700);
+
+        return () => clearTimeout(timer);
+    }, [blockData.inputValue]);
+
+    if (!array || array.length < 1) {
         console.debug(
             ErrorMSG.invalidLength.replace(
                 "{val}",
-                data.header?.title || "No array name"
+                attr?.container?.id || "No array name"
             )
         );
         return null;
     }
 
+    const getObjectIndex = (key, isSearchByText = false) => {
+        if (!array || !array.length) return null;
+
+        let result;
+
+        if (isSearchByText) {
+            result = array.findIndex((obj) => obj?.text === state[btnStateKey]);
+        } else {
+            result = array.findIndex(
+                (obj) => obj?.value === state[btnStateKey]
+            );
+        }
+        return result;
+    };
+
     const inputAttr = {
-        type: data.input?.type || "text",
-        min: data.input?.min ?? null,
-        max: data.input?.max ?? null,
-        step: data.input?.step ?? null,
-        placeholder: data.input?.placeholder || "Enter value...",
-        ...data.input,
+        type: attr?.input?.type || "text",
+        min: attr?.input?.min ?? null,
+        max: attr?.input?.max ?? null,
+        step: attr?.input?.step ?? null,
+        placeholder: attr?.input?.placeholder || "Enter value...",
+        ...attr?.input,
     };
 
     const validateInput = (value) => {
@@ -84,86 +163,111 @@ export default function CreateInputAndButton({
             errorInput = true;
         }
 
-        setState((prevState) => ({
+        setBlockData((prevState) => ({
             ...prevState,
             inputValue: value,
             errorInput,
             errorMessage: error,
         }));
-    };
 
-    const changeTextValue = () => {
-        const currentValueIndex = arrayWithObjects.findIndex(
-            (item) => item.value === state.button.value
-        );
-        const newIndex = (currentValueIndex + 1) % arrayWithObjects.length;
-        const newValue = arrayWithObjects[newIndex];
-
-        setState((prevState) => ({
-            ...prevState,
-            button: {
-                text: newValue.text,
-                value: newValue.value,
-            },
-        }));
-
-        console.debug(
-            `[INFO]: The ${
-                data.header?.title || ""
-            } button value successfully switched from '${
-                state.button.value
-            }' to '${newValue.value}'`
-        );
+        return errorInput;
     };
 
     const ButtonD = React.memo(() => (
         <button
-            {...data.button}
-            onClick={changeTextValue}
-            value={state.button.value}
-            className={state.errorInput ? "error-btn" : ""}
+            {...attr.button}
+            onClick={handleButtonClick}
+            value={blockData.buttonValue}
+            className={blockData.errorInput ? "error-btn" : ""}
         >
-            {state.button.text}
+            {blockData.buttonText}
         </button>
     ));
 
     const InputD = React.memo(() => (
         <input
             {...inputAttr}
-            value={state.inputValue}
-            onChange={(e) => validateInput(e.target.value)}
-            className={state.errorInput ? "error-input" : ""}
+            value={blockData.inputValue}
+            onChange={handleChangeInput}
+            className={blockData.errorInput ? "error-input" : ""}
         />
     ));
 
     const getBlock = () => {
-        const position = String(buttonPosition).toLowerCase();
+        const position = String(btnPosition).toLowerCase();
         return position === "right" || position === "1"
             ? [<InputD />, <ButtonD />]
             : [<ButtonD />, <InputD />];
     };
 
+    const handleButtonClick = (e) => {
+        let cV = e?.target?.value || "";
+
+        let m = getObjectIndex(cV, isButtonCheckedByText);
+
+        if (m !== null) {
+            let nI = (m + 1) % array.length;
+
+            setState((prev) => ({
+                ...prev,
+                [btnStateKey]: isButtonCheckedByText
+                    ? array[nI].text
+                    : array[nI].value,
+            }));
+
+            setBlockData((prev) => ({
+                ...prev,
+                buttonText: array[nI].text,
+                buttonValue: array[nI].value,
+            }));
+
+            console.debug(
+                `[INFO]: The 'state.${
+                    btnStateKey || ""
+                }' button value successfully switched from '${
+                    blockData.buttonValue
+                }' to '${array[nI].value}'`
+            );
+        }
+    };
+
+    const handleChangeInput = (e) => {
+        let cV = e?.target?.value || "0";
+        if (validateInput(cV)) {
+            setBlockData((prev) => ({
+                ...prev,
+                inputValue: cV,
+            }));
+        }
+    };
+
     return (
         <div>
             <h4
-                id={data?.header?.id || ErrorMSG.invalidName}
-                key={data?.header?.key || crypto.randomUUID()}
-                className={data.header?.classes || ""}
+                id={attr?.header?.id || ErrorMSG.invalidName}
+                key={attr?.header?.key || crypto.randomUUID()}
+                className={attr?.header?.classes || ""}
             >
-                {languages[parentState.currentLanguage]?.userInputForm
-                    .userInput[data.header.title] || ErrorMSG.invalidName}
+                {GetValidTextValue(
+                    [...(Ways.uIfUi || []), headerTextKey],
+                    state.currentLanguage
+                )}
             </h4>
             <div
-                id={data?.container?.id || ErrorMSG.invalidName}
-                key={data?.container?.key || crypto.randomUUID()}
+                id={attr?.container?.id || ErrorMSG.invalidName}
+                key={attr?.container?.key || crypto.randomUUID()}
                 className={`container ${
                     state.errorInput ? "error-container" : ""
                 }`}
+                ariaLabel={GetValidTextValue(
+                    [...(Ways?.uIfAl || []), containerAriaKey],
+                    state.currentLanguage
+                )}
             >
                 {getBlock()}
             </div>
-            {state.errorMessage && (
-                <p className="error-msg">{state.errorMessage}</p>
+            {blockData.errorMessage && (
+                <p className="error-msg">{blockData.errorMessage}</p>
             )}
         </div>
     );

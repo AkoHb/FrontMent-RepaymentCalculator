@@ -18,22 +18,18 @@ export default function generateFieldConfig(
     min,
     max,
     placeholder,
-    handleChange,
-    handleClick,
     step = 1
 ) {
     return {
         header: {
             id: `money-${type}-header`,
             key: `amount-${type}-header-key`,
-            title: type,
             classes: "",
         },
         container: {
             id: `money-${type}-cont`,
             key: `money-${type}-cont-key`,
             classes: "",
-            ariaLabel: type,
         },
         input: {
             id: `money-${type}`,
@@ -44,13 +40,11 @@ export default function generateFieldConfig(
             max,
             step,
             placeholder,
-            onChange: handleChange,
         },
         button: {
             id: `money-${type}-btn`,
             key: `money-${type}-btn-key`,
             type: "button",
-            onClick: handleClick,
         },
     };
 }

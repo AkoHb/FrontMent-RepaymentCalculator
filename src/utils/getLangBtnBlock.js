@@ -1,76 +1,105 @@
 // load the default settings to avoid errors
-import defaultValues from '../config/defaultValues';
+import config from "../config/config";
+import defaultValues from "../config/defaultValues";
 
-// also load current configuration file and get the values from it
-import config from '../config/config';
+import Ways from "../config/ways.json";
+import GetValidTextValue from "./getValidTextValue";
+import CreateDynamicStyles from "./createDynamicStyles";
+import GetBlockMinValues from "./getBlockMinValues";
 
 // also load the array with error messages
-const ErrorMSG = require('../config/errorsMsgs.json');
+const ErrorMSG = require("../config/errorsMsgs.json");
 
 // Get valid language from 'json' file and fill the valid fields into form
-const languages = require('../config/lang.json');
+const languages = require("../config/lang.json");
 
 // get all languages and sort them by usage count
-const getLanguages = () => Object.keys(languages).sort((l1, l2) => (languages[l2]?.usageCount ?? 0) - (languages[l1]?.usageCount ?? 0));
+const getLanguages = () =>
+    Object.keys(languages).sort(
+        (l1, l2) =>
+            (languages[l2]?.usageCount ?? 0) - (languages[l1]?.usageCount ?? 0)
+    );
 
 /**
- * The `getLangBtnBlock` fill the top section to select language by user opinion
+ * The `getLangBtnBlock` fills the top section to select language based on user input.
  * 
- * the function: 
- * - check json file to valid languages and sort them by usage count
- * - usage count increase every time, like user push the button calculate result
- * - it's synamical value
- * - if there are no languages show the string in English
+ * @param {object} state - The current state from the parent component.
+ * @param {function} setState - The setState function from the parent component.
+ * 
+ * The function:
+ * - Checks the JSON file for valid languages and sorts them by usage count.
+ * - Filters out the current language from the list.
+ * - Slices the array of languages based on the configuration setting.
+ * - Increases the usage count each time the language selection button is clicked.
+ * - Dynamically generates language selection buttons.
+ * - If no valid languages are available, displays an error message in English.
+ * 
+ * @returns {JSX.Element} A JSX element that contains the language selection buttons or an error message if no languages are available.
  */
 
-export default function getLangBtnBlock({onClick}) {
+export default function getLangBtnBlock({ state, setState }) {
     
-    const blockWidth = ( !config.languageButtons.minColumnSize  || config.languageButtons.minColumnSize < defaultValues.minColumnSize )
-        ? defaultValues.minColumnSize
-        : config.languageButtons.minColumnSize;
+    const sliceArray =
+        !config?.langButtonsCount ||
+        config?.langButtonsCount < defaultValues.langButtonsCount
+            ? defaultValues.langButtonsCount
+            : config.langButtonsCount;
 
-    const sliceArray = ( !config.languageButtons.langButtonsCount || config.languageButtons.langButtonsCount < defaultValues.languageButtons)
-        ? defaultValues.languageButtons
-        : config.languageButtons.langButtonsCount
+            
+            const styleData = `
+        #user-lang-select {
+                    display : flex;
+                    minWidth : ${GetBlockMinValues()[0]}px;
+                    justifyContent : space-evenly;
+                    alignItems: center;   
+                }
+    `;
+    
+    CreateDynamicStyles(styleData);
 
-    const buttonsData = getLanguages();
-
+    const buttonsData = getLanguages().filter(
+        lang => lang !== state.currentLanguage
+    );
+    
     let fillData;
 
+    const handleChangeLanguage = e => {
+
+      const prevLang = state.currentLanguage;
+      const newLang = e.target.value;
+      setState(prev => ({...prev, currentLanguage: newLang }));
+      console.debug(`The language changed by user from '${prevLang}' to ${newLang}`);
+
+    };
+
     if (buttonsData.length >= 2) {
-        fillData = buttonsData
-            .slice(0, sliceArray)
-            .map(language =>(
-                <button
-                    id={language}
-                    key={language}
-                    value={language}
-                    aria-label={languages[language]?.fullNameLang || ErrorMSG.languageTitle}
-                    title={languages[language]?.fullNameLang || ErrorMSG.languageTitle}
-                    onClick={onClick}
-                >
-                    {language}
-                </button>
-                )
-            )
+        fillData = buttonsData.slice(0, sliceArray).map((language) => (
+            <button
+                id={language}
+                key={`${language}-key`}
+                value={language}
+                aria-label={GetValidTextValue(Ways.fNl, language)}
+                title={GetValidTextValue(Ways.fNl, language)}
+                onClick={handleChangeLanguage}
+            >
+                {language}
+            </button>
+        ));
     } else {
-        fillData = [<p key={crypto.randomUUID()}>{ErrorMSG.langMessage}</p>];
+        fillData = [
+            <p key="invalid-language-data-key">{ErrorMSG.langMessage}</p>,
+        ];
     }
 
     return (
         <>
-            <div 
-                id='user-lang-select'
+            <div
+                id="user-lang-select"
+                key="user-lang-select-key"
                 aria-label="Use to select correct page language"
-                style={{
-                    display : "flex",
-                    minWidth : blockWidth,
-                    justifyContent : "space-evenly",
-                    alignItems: "center"     
-                }}
-                >
+            >
                 {fillData}
             </div>
         </>
-    )
+    );
 }

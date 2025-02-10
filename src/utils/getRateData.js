@@ -22,8 +22,8 @@ export default function getRateData ( currentLanguage = defaultValues.preloadLan
     if ( currentData.length > 1 ) {
         currentData.forEach(rate => {
             let char = currentData?.rate?.at(-1) 
-                ? currentData.rate.at(-1).slice(0, 1).toLowerCase() 
-                : rate.slice(0, 1).toLowerCase();
+                ? currentData.rate.at(-1).toLowerCase() 
+                : rate.toLowerCase();
             result.push({
                 value: rate,
                 text: getRate(["%", char])

@@ -1,37 +1,27 @@
 // load the default settings to avoid errors
-import defaultValues from "../../config/defaultValues";
-
-// also add file with error messages
-let ErrorMSG = require("../../config/errorsMsgs.json");
-
-// Get valid language from 'json' file and fill the valid fields into form
-const languages = require("../../config/lang");
+import Ways from "../../config/ways.json";
+import getValidTextValue from "../../utils/getValidTextValue";
 
 /**
  *  The function used to unify the radio inputs
- * 
-* @param { Object } data - object with valid tags attributes
- * @param { String } language - pass the current language or the default 
+ *
+ * @param { Object } state - Parent object with valid tags attributes
+ * @param { Object } setState - Paren object with valid tags attributes
+ * @param { Object } data - object with valid tags attributes
  * @returns { JSX } - return the JSX Object
  */
 export default function createRadioInput(
+    state,
+    setState,
     data,
-    language = defaultValues.preloadLanguage
 ) {
-    const defaultLang = defaultValues.preloadLanguage;
-
-    const labelText =
-        languages?.[language]?.userInputForm?.userInput?.mortgageType?.[
-            data?.label?.key
-        ] ||
-        languages?.[defaultLang]?.userInputForm?.userInput?.mortgageType?.[
-            data?.label?.key
-        ] ||
-        ErrorMSG.invalidName;
-
     const inputId = data?.input?.id || "invalid-id";
     const labelClasses = data?.label?.classes || "";
     const inputClasses = data?.input?.classes || "";
+
+    const handleChangeRadio = e => {
+        setState(prev => ({...prev, mortgageType: e?.target?.value || null}))
+    }
 
     return (
         <label htmlFor={inputId} className={`mUItext ${labelClasses}`}>
@@ -40,9 +30,12 @@ export default function createRadioInput(
                 className={`light-bg ${inputClasses}`}
                 key={`radio-${inputId}-key`}
                 type="radio"
+                onChange={handleChangeRadio}
+                value={data?.key || inputId}
+                checked={data?.key === state.mortgageType}
                 required
             />
-            {labelText}
+            {getValidTextValue([...(Ways?.uIfUiMt  || []), (data?.label?.key || "")], state.currentLanguage)}
         </label>
     );
 }

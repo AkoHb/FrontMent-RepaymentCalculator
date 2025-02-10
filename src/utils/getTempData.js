@@ -1,8 +1,11 @@
-// load еру default settings to avoid errors
+// load the default settings to avoid errors
 import defaultValues from "../config/defaultValues";
 
 // import func to get valid button text based by count (user input value)
 import GetWordForm from './getWordForm';
+
+// add paths to language object
+const ways = require('../config/ways.json');
 
 // also add file with error messages
 let ErrorMSG = require("../config/errorsMsgs.json");

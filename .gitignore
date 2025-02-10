@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 zero.js
+zzero.js
 
 # testing
 /coverage

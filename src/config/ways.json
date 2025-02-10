@@ -1,0 +1,23 @@
+{
+    "description" : "This file defines shorthand keys for accessing specific localization data paths. These abbreviations help minimize code repetition, improve readability, and simplify working with multilingual content.",
+
+    "uIfAl": ["userInputForm", "ariaLabels"],
+    "uIfCb" : ["userInputForm", "clearButton"],
+    "uIfT" : ["userInputForm", "title"],
+    "uIfUi" : ["userInputForm", "userInput"],
+    "uIfUiMt" : ["userInputForm", "userInput", "mortgageType"],
+    "uIfUiWf" : ["userInputForm", "userInput", "wordForms"],
+    "uIfCbT" : ["userInputForm", "calculateButtonText"],
+
+    "rTe" : ["result", "titleEmpty"],
+    "rDe" : ["result", "descriptionEmpty"],
+    "rT" : ["result", "title"],
+    "rD" : ["result", "description"],
+    "rMbT" : ["result", "monthlyBillTitle"],
+    "rFbT" : ["result", "fullBillTitle"],
+    "rAl" : ["result", "ariaLabel"],
+
+    "uC" : ["usageCount"],
+    "fNl" : ["fullNameLang"],
+    "cV" : ["currencyValue"]
+}

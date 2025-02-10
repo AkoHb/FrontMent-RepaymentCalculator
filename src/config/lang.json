@@ -1,195 +1,196 @@
 {
-    "en": {
-        "userInputForm": {
-            "ariaLabels": {
-                "userInputBlock": "Change values to calculate the result and see it",
-                "form": "Fill out the all values to get valid result",
-                "clearButton": "Push it to clear all fields into form",
-                "currencySelection": "Push to the char or the button to change the currency.",
-                "term": "Push to the char or the button to change the term (months or months).",
-                "rate": "Push it to change value between month rate and year rate",
-                "submit": "Fill out the form and ckick the button to get the result."
-            },
-            "clearButton": "Clear All",
-            "title": "Mortgage Calculator",
-            "userInput": {
-                "moneyAmount": "Mortgage Amount",
-                "term": "Mortgage Term",
-                "interestRate": "Interest Rate",
-                "mortgageType": {
-                    "type": "Mortgage Type",
-                    "repaiment": "Repayment",
-                    "interestOnly": "Interest Only"
-                },
-                "wordForms": {
-                    "month": ["month", "months"],
-                    "year": ["year", "years"],
-                    "day": ["day", "days"]
-                }
-            },
-            "calculateButtonText": "Calculate Repayments"
+  "en": {
+    "userInputForm": {
+      "ariaLabels": {
+        "userInputBlock": "Change values to calculate the result and see it.",
+        "form": "Fill out all values to get a valid result.",
+        "clearButton": "Click to clear all fields in the form.",
+        "currencySelection": "Click on the chart or the button to change the currency.",
+        "term": "Click on the chart or the button to change the term (months or years).",
+        "rate": "Click to toggle between monthly rate and yearly rate.",
+        "submit": "Fill out the form and click the button to get the result."
+      },
+      "clearButton": "Clear All",
+      "title": "Mortgage Calculator",
+      "userInput": {
+        "moneyAmount": "Mortgage Amount",
+        "term": "Mortgage Term",
+        "interestRate": "Interest Rate",
+        "mortgageType": {
+          "type": "Mortgage Type",
+          "repayment": "Repayment",
+          "interestOnly": "Interest Only"
         },
-
-        "result": {
-            "titleEmpty": "Results shown here",
-            "descriptionEmpty": "Complete the form and click 'calculate repayments' to see what your monthly repayments would be.",
-            "title": "Your results",
-            "description": "Your result are shown below based on the information you provided. To adjust the results, edit the form and click 'Calculate Repayments' again.",
-            "monthlyBillTitle": "Your monthly repayments",
-            "fullBillTitle": "Total you'll repay over the term",
-            "ariaLabel": {
-                "monthly": "Next value show the monthly payment in selected carrency",
-                "total": "Next value show the total payment value in selected carrency"
-            }
-        },
-        "usageCount": 100,
-        "fullNameLang": "Select 'English' language.",
-        "currencyValue": [
-            ["en-US", "USD"],
-            ["en-GB", "GBP"]
-        ]
+        "wordForms": {
+          "month": ["month", "months"],
+          "year": ["year", "years"],
+          "day": ["day", "days"]
+        }
+      },
+      "calculateButtonText": "Calculate Repayments"
     },
 
-    "de": {
-        "userInputForm": {
-            "ariaLabels": {
-                "userInputBlock": "Ändern Sie die Werte, um das Ergebnis zu berechnen und anzuzeigen",
-                "form": "Füllen Sie alle Werte aus, um ein gültiges Ergebnis zu erhalten",
-                "clearButton": "Drücken Sie, um alle Felder im Formular zu löschen",
-                "currencySelection": "Drücken Sie das Zeichen oder die Schaltfläche, um die Währung zu ändern",
-                "term": "Drücken Sie das Zeichen oder die Schaltfläche, um die Laufzeit (Monate oder Jahre) zu ändern",
-                "rate": "Drücken Sie, um den Wert zwischen monatlichem Zinssatz und Jahreszins zu ändern",
-                "submit": "Füllen Sie das Formular aus und klicken Sie auf die Schaltfläche, um das Ergebnis zu erhalten"
-            },
-            "clearButton": "Alle löschen",
-            "title": "Hypothekenrechner",
-            "userInput": {
-                "moneyAmount": "Hypothekenbetrag",
-                "term": "Hypothekenlaufzeit",
-                "interestRate": "Zinssatz",
-                "mortgageType": {
-                    "type": "Hypothekentyp",
-                    "repaiment": "Tilgung",
-                    "interestOnly": "Nur Zinsen"
-                },
-                "wordForms": {
-                    "month": ["Monat", "Monate"],
-                    "year": ["Jahr", "Jahre"],
-                    "day": ["Tag", "Tage"]
-                }
-            },
-            "calculateButtonText": "Berechnungen durchführen"
+    "result": {
+      "titleEmpty": "Results shown here",
+      "descriptionEmpty": "Complete the form and click 'Calculate Repayments' to see what your monthly repayments would be.",
+      "title": "Your results",
+      "description": "Your results are shown below based on the information you provided. To adjust the results, edit the form and click 'Calculate Repayments' again.",
+      "monthlyBillTitle": "Your monthly repayments",
+      "fullBillTitle": "Total you'll repay over the term",
+      "ariaLabel": {
+        "monthly": "The next value shows the monthly payment in the selected currency.",
+        "total": "The next value shows the total payment amount in the selected currency."
+      }
+    },
+    "usageCount": 100,
+    "fullNameLang": "Select 'English' language.",
+    "currencyValue": [
+      ["en-US", "USD"],
+      ["en-GB", "GBP"]
+    ]
+  },
+
+  "de": {
+    "userInputForm": {
+      "ariaLabels": {
+        "userInputBlock": "Ändern Sie die Werte, um das Ergebnis zu berechnen und anzuzeigen.",
+        "form": "Füllen Sie alle Felder aus, um ein gültiges Ergebnis zu erhalten.",
+        "clearButton": "Klicken Sie hier, um alle Felder im Formular zu löschen.",
+        "currencySelection": "Klicken Sie auf das Diagramm oder die Schaltfläche, um die Währung zu ändern.",
+        "term": "Klicken Sie auf das Diagramm oder die Schaltfläche, um die Laufzeit (Monate oder Jahre) zu ändern.",
+        "rate": "Klicken Sie, um zwischen monatlichem und jährlichem Zinssatz zu wechseln.",
+        "submit": "Füllen Sie das Formular aus und klicken Sie auf die Schaltfläche, um das Ergebnis zu erhalten."
+      },
+      "clearButton": "Alles löschen",
+      "title": "Hypothekenrechner",
+      "userInput": {
+        "moneyAmount": "Hypothekenbetrag",
+        "term": "Hypothekenlaufzeit",
+        "interestRate": "Zinssatz",
+        "mortgageType": {
+          "type": "Hypothekenart",
+          "repayment": "Tilgung",
+          "interestOnly": "Nur Zinsen"
         },
-        "result": {
-            "titleEmpty": "Ergebnisse hier anzeigen",
-            "descriptionEmpty": "Füllen Sie das Formular aus und klicken Sie auf 'Berechnungen durchführen', um Ihre monatlichen Zahlungen zu sehen.",
-            "title": "Ihre Ergebnisse",
-            "description": "Ihre Ergebnisse werden unten basierend auf den angegebenen Informationen angezeigt. Um die Ergebnisse zu ändern, bearbeiten Sie das Formular und klicken Sie erneut auf 'Berechnungen durchführen'.",
-            "monthlyBillTitle": "Ihre monatlichen Zahlungen",
-            "fullBillTitle": "Gesamtsumme, die Sie über die Laufzeit zurückzahlen werden",
-            "ariaLabel": {
-                "monthly": "Der nächste Wert zeigt die monatliche Zahlung in der ausgewählten Währung an",
-                "total": "Der nächste Wert zeigt den Gesamtzahlungsbetrag in der ausgewählten Währung an"
-            }
-        },
-        "usageCount": 60,
-        "fullNameLang": "Wählen Sie die Sprache 'Deutsch'.",
-        "currencyValue": [["de-DE", "EUR"]]
+        "wordForms": {
+          "month": ["Monat", "Monate"],
+          "year": ["Jahr", "Jahre"],
+          "day": ["Tag", "Tage"]
+        }
+      },
+      "calculateButtonText": "Rückzahlungen berechnen"
     },
 
-    "ru": {
-        "userInputForm": {
-            "ariaLabels": {
-                "userInputBlock": "Измените значения для расчёта результата и просмотра",
-                "form": "Заполните все поля, чтобы получить правильный результат",
-                "clearButton": "Нажмите, чтобы очистить все поля формы",
-                "currencySelection": "Нажмите на символ или кнопку, чтобы изменить валюту",
-                "term": "Нажмите на символ или кнопку, чтобы изменить срок (месяцы или годы)",
-                "rate": "Нажмите для изменения значения между месячной и годовой процентной ставкой",
-                "submit": "Заполните форму и нажмите кнопку для получения результата"
-            },
-            "clearButton": "Очистить все",
-            "title": "Калькулятор ипотеки",
-            "userInput": {
-                "moneyAmount": "Сумма ипотеки",
-                "term": "Срок ипотеки",
-                "interestRate": "Процентная ставка",
-                "mortgageType": {
-                    "type": "Тип ипотеки",
-                    "repaiment": "Погашение",
-                    "interestOnly": "Только проценты"
-                },
-                "wordForms": {
-                    "month": ["месяц", "месяцев"],
-                    "year": ["год", "года", "лет"],
-                    "day": ["день", "дня", "дней"]
-                }
-            },
-            "calculateButtonText": "Рассчитать выплаты"
+    "result": {
+      "titleEmpty": "Hier werden die Ergebnisse angezeigt",
+      "descriptionEmpty": "Füllen Sie das Formular aus und klicken Sie auf 'Rückzahlungen berechnen', um Ihre monatlichen Zahlungen anzuzeigen.",
+      "title": "Ihre Ergebnisse",
+      "description": "Ihre Ergebnisse basieren auf den von Ihnen eingegebenen Informationen. Ändern Sie das Formular und klicken Sie erneut auf 'Rückzahlungen berechnen', um die Werte anzupassen.",
+      "monthlyBillTitle": "Ihre monatlichen Rückzahlungen",
+      "fullBillTitle": "Gesamtbetrag über die Laufzeit",
+      "ariaLabel": {
+        "monthly": "Der nächste Wert zeigt die monatliche Zahlung in der gewählten Währung an.",
+        "total": "Der nächste Wert zeigt den Gesamtbetrag der Zahlungen in der gewählten Währung an."
+      }
+    },
+    "usageCount": 60,
+    "fullNameLang": "Wählen Sie die Sprache 'Deutsch'.",
+    "currencyValue": [["de-DE", "EUR"]]
+  },
+
+  "ru": {
+    "userInputForm": {
+      "ariaLabels": {
+        "userInputBlock": "Измените значения, чтобы рассчитать и увидеть результат.",
+        "form": "Заполните все поля, чтобы получить корректный результат.",
+        "clearButton": "Нажмите, чтобы очистить все поля в форме.",
+        "currencySelection": "Нажмите на график или кнопку, чтобы изменить валюту.",
+        "term": "Нажмите на график или кнопку, чтобы изменить срок (месяцы или годы).",
+        "rate": "Нажмите, чтобы переключиться между месячной и годовой ставкой.",
+        "submit": "Заполните форму и нажмите кнопку, чтобы получить результат."
+      },
+      "clearButton": "Очистить всё",
+      "title": "Ипотечный калькулятор",
+      "userInput": {
+        "moneyAmount": "Сумма ипотеки",
+        "term": "Срок ипотеки",
+        "interestRate": "Процентная ставка",
+        "mortgageType": {
+          "type": "Тип ипотеки",
+          "repayment": "Погашение",
+          "interestOnly": "Только проценты"
         },
-        "result": {
-            "titleEmpty": "Результаты отображаются здесь",
-            "descriptionEmpty": "Заполните форму и нажмите 'Рассчитать выплаты', чтобы увидеть ваши ежемесячные выплаты.",
-            "title": "Ваши результаты",
-            "description": "Ваши результаты показаны ниже на основе введённых вами данных. Чтобы изменить результат, отредактируйте форму и нажмите 'Рассчитать выплаты' снова.",
-            "monthlyBillTitle": "Ваши ежемесячные выплаты",
-            "fullBillTitle": "Общая сумма, которую вы заплатите за срок",
-            "ariaLabel": {
-                "monthly": "Следующее значение покажет ежемесячный платёж в выбранной валюте",
-                "total": "Следующее значение покажет общую сумму платежа в выбранной валюте"
-            }
-        },
-        "usageCount": 55,
-        "fullNameLang": "Выберите язык 'Русский'.",
-        "currencyValue": [
-            ["ru-RU", "RUB"]
-        ]
+        "wordForms": {
+          "month": ["месяц", "месяца", "месяцев"],
+          "year": ["год", "года", "лет"],
+          "day": ["день", "дня", "дней"]
+        }
+      },
+      "calculateButtonText": "Рассчитать платежи"
     },
 
-    "it": {
-        "userInputForm": {
-            "ariaLabels": {
-                "userInputBlock": "Modifica i valori per calcolare il risultato e visualizzarlo",
-                "form": "Compila tutti i valori per ottenere un risultato valido",
-                "clearButton": "Premi per cancellare tutti i campi nel modulo",
-                "currencySelection": "Premi sul simbolo o sul pulsante per cambiare la valuta",
-                "term": "Premi sul simbolo o sul pulsante per cambiare il termine (mesi o anni)",
-                "rate": "Premi per cambiare il valore tra il tasso mensile e il tasso annuale",
-                "submit": "Compila il modulo e clicca sul pulsante per ottenere il risultato"
-            },
-            "clearButton": "Cancella tutto",
-            "title": "Calcolatore Mutuo",
-            "userInput": {
-                "moneyAmount": "Importo mutuo",
-                "term": "Durata mutuo",
-                "interestRate": "Tasso di interesse",
-                "mortgageType": {
-                    "type": "Tipo di mutuo",
-                    "repaiment": "Rimborso",
-                    "interestOnly": "Solo interessi"
-                },
-                "wordForms": {
-                    "month": ["mese", "mesi"],
-                    "year": ["anno", "anni"],
-                    "day": ["giorno", "giorni"]
-                }
-            },
-            "calculateButtonText": "Calcola rate"
+    "result": {
+      "titleEmpty": "Результаты появятся здесь",
+      "descriptionEmpty": "Заполните форму и нажмите 'Рассчитать платежи', чтобы узнать сумму ежемесячного платежа.",
+      "title": "Ваши результаты",
+      "description": "Ваши результаты основаны на введённой вами информации. Чтобы изменить расчёты, отредактируйте форму и нажмите 'Рассчитать платежи' снова.",
+      "monthlyBillTitle": "Ваши ежемесячные платежи",
+      "fullBillTitle": "Общая сумма выплат за срок ипотеки",
+      "ariaLabel": {
+        "monthly": "Следующее значение показывает ежемесячный платёж в выбранной валюте.",
+        "total": "Следующее значение показывает общую сумму выплат в выбранной валюте."
+      }
+    },
+    "usageCount": 55,
+    "fullNameLang": "Выберите язык 'Русский'.",
+    "currencyValue": [["ru-RU", "RUB"]]
+  },
+
+  "it": {
+    "userInputForm": {
+      "ariaLabels": {
+        "userInputBlock": "Modifica i valori per calcolare e visualizzare il risultato.",
+        "form": "Compila tutti i campi per ottenere un risultato valido.",
+        "clearButton": "Clicca per cancellare tutti i campi del modulo.",
+        "currencySelection": "Clicca sul grafico o sul pulsante per cambiare valuta.",
+        "term": "Clicca sul grafico o sul pulsante per modificare la durata (mesi o anni).",
+        "rate": "Clicca per passare dal tasso mensile al tasso annuo.",
+        "submit": "Compila il modulo e clicca sul pulsante per ottenere il risultato."
+      },
+      "clearButton": "Cancella tutto",
+      "title": "Calcolatore Mutuo",
+      "userInput": {
+        "moneyAmount": "Importo del Mutuo",
+        "term": "Durata del Mutuo",
+        "interestRate": "Tasso di Interesse",
+        "mortgageType": {
+          "type": "Tipo di Mutuo",
+          "repayment": "Ammortamento",
+          "interestOnly": "Solo Interessi"
         },
-        "result": {
-            "titleEmpty": "Risultati mostrati qui",
-            "descriptionEmpty": "Completa il modulo e clicca su 'Calcola rate' per vedere quanto saranno le tue rate mensili.",
-            "title": "I tuoi risultati",
-            "description": "I tuoi risultati sono mostrati qui sotto in base alle informazioni che hai fornito. Per modificare i risultati, modifica il modulo e clicca di nuovo su 'Calcola rate'.",
-            "monthlyBillTitle": "Le tue rate mensili",
-            "fullBillTitle": "Totale che rimborserai durante il periodo",
-            "ariaLabel": {
-                "monthly": "Il valore successivo mostra il pagamento mensile nella valuta selezionata",
-                "total": "Il valore successivo mostra il totale del pagamento nella valuta selezionata"
-            }
-        },
-        "usageCount": 40,
-        "fullNameLang": "Seleziona la lingua 'Italiano'.",
-        "currencyValue": [["it-IT", "EUR"]]
-    }
+        "wordForms": {
+          "month": ["mese", "mesi"],
+          "year": ["anno", "anni"],
+          "day": ["giorno", "giorni"]
+        }
+      },
+      "calculateButtonText": "Calcola Rata"
+    },
+
+    "result": {
+      "titleEmpty": "I risultati verranno mostrati qui",
+      "descriptionEmpty": "Compila il modulo e clicca su 'Calcola Rata' per vedere l'importo della tua rata mensile.",
+      "title": "I tuoi risultati",
+      "description": "I risultati sono calcolati in base alle informazioni inserite. Per modificarli, aggiorna il modulo e clicca di nuovo su 'Calcola Rata'.",
+      "monthlyBillTitle": "La tua rata mensile",
+      "fullBillTitle": "Totale da rimborsare durante il periodo",
+      "ariaLabel": {
+        "monthly": "Il valore seguente mostra la rata mensile nella valuta selezionata.",
+        "total": "Il valore seguente mostra l'importo totale da rimborsare nella valuta selezionata."
+      }
+    },
+    "usageCount": 40,
+    "fullNameLang": "Seleziona la lingua 'Italiano'.",
+    "currencyValue": [["it-IT", "EUR"]]
+  }
 }

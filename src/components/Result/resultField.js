@@ -79,7 +79,7 @@ const getContent = (lang, currencyChar, month, total) => {
                         id='result-monthly-repayment-value'
                         key="result-monthly-repayment-value-key"
                         className=''
-                    >{currencyChar.slice(0, 1)} {getFormattedValue(month)}</p>
+                    >{currencyChar} {getFormattedValue(month)}</p>
                     <hr />
                     <h4
                         id='result-total-repayment'
@@ -93,7 +93,7 @@ const getContent = (lang, currencyChar, month, total) => {
                         id='result-total-repayment-value'
                         key="result-total-repayment-value-key"
                         className=''
-                    >{currencyChar.slice(0, 1)} {getFormattedValue(total)}</p>
+                    >{currencyChar} {getFormattedValue(total)}</p>
                 </div>
             </>
         )
